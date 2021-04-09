@@ -1,0 +1,20 @@
+{
+    "name": "hoolichat-api",
+    "version": "1.0.0",
+    "description": "The API server for HooliChat, a flutter communication application for small and medium scaled businesses",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js",
+        "dev": "nodemon indexjs"
+    },
+    "author": "Ishit Beswal <https://github.com/ishitb> (DevilIsh)",
+    "repository": "https://github.com/ishitb/hoolichat-api",
+    "readme": "README.md",
+    "license": "ISC",
+    "dependencies": {
+        "dotenv": "^8.2.0",
+        "ejs": "^3.1.6",
+        "express": "^4.17.1",
+        "nodemon": "^2.0.7"
+    }
+}
