@@ -13,10 +13,10 @@ const init = async () => {
      * Middleware priority
      *
      * 0. Security (CORS, other headers)
-     * 1. IP based rate limiter
+     * 1. DB Connection
      * 2. JSON parser
      * 3. URLEncoded parser
-     * 4. Session
+     * 4. Static generator
      * 5. Team based rate limiter
      * 6. Router
      */
@@ -27,7 +27,10 @@ const init = async () => {
     app.disable('X-Powered-By');
 
     app.use(express.json());
+
     app.use(express.urlencoded({ extended: false }));
+
+    app.use(express.static('public'));
 
     app.use('/', router.router);
 
