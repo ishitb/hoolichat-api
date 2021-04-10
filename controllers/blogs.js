@@ -46,8 +46,21 @@ const blog_delete = (req, res) => {
         });
 };
 
+const blog_update = (req, res) => {
+    const id = req.params.id;
+
+    Blog.updateOne({ _id: id }, req.body, (err) => console.log(err))
+        .then((result) => res.send(result.n > 0))
+        .catch((err) => {
+            console.log(err);
+            res.send({ message: 'internal Server Error' });
+        });
+};
+
 module.exports = {
     blog_get_all,
     blog_add,
     blog_get_one,
+    blog_delete,
+    blog_update,
 };
