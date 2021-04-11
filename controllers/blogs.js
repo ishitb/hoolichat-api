@@ -3,7 +3,7 @@ const Blog = require('../models/blog');
 const Model = Blog;
 
 const blog_get_all = (req, res) => {
-    Blog.find()
+    Model.find()
         .then((result) => res.send(result))
         .catch((err) => {
             console.log(err);
@@ -12,7 +12,7 @@ const blog_get_all = (req, res) => {
 };
 
 const blog_add = (req, res) => {
-    const blog = new Blog(req.body);
+    const blog = new Model(req.body);
     blog.save()
         .then((result) => {
             console.log(result);
@@ -27,7 +27,7 @@ const blog_add = (req, res) => {
 const blog_get_one = (req, res) => {
     const id = req.params.id;
     console.log(id);
-    Blog.findById(id)
+    Model.findById(id)
         .then((result) => {
             res.send(result);
         })
@@ -38,7 +38,7 @@ const blog_get_one = (req, res) => {
 };
 
 const blog_delete = (req, res) => {
-    Blog.findByIdAndDelete(req.params.id)
+    Model.findByIdAndDelete(req.params.id)
         .then((result) => res.send({ message: `${req.params.id} Deleted!` }))
         .catch((err) => {
             console.log(err);
@@ -49,7 +49,7 @@ const blog_delete = (req, res) => {
 const blog_update = (req, res) => {
     const id = req.params.id;
 
-    Blog.updateOne({ _id: id }, req.body, (err) => console.log(err))
+    Model.updateOne({ _id: id }, req.body, (err) => console.log(err))
         .then((result) => res.send(result.n > 0))
         .catch((err) => {
             console.log(err);

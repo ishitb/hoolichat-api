@@ -1,6 +1,7 @@
 const express = require('express');
 
 const router = require('./routes/index');
+const config = require('./config');
 
 const app = express();
 
@@ -34,8 +35,8 @@ const init = async () => {
 
     app.use('/', router.router);
 
-    app.listen(process.env.PORT || 3000, () => {
-        console.log(`Now tuning into port: ${process.env.PORT}`);
+    app.listen(config.port, () => {
+        console.log(`Now tuning into port: ${config.port}`);
     });
 };
 
