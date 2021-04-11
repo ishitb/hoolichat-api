@@ -6,10 +6,21 @@ const auth_register = (req, res) => {
 
     Model.create(details)
         .then((user) => {
-            const { email, _id } = user;
+            const {
+                email,
+                _id,
+                full_name,
+                phone,
+                description,
+                username,
+            } = user;
             const userInfo = {
                 _id,
                 email,
+                full_name,
+                phone,
+                description,
+                username,
             };
 
             const token = utils.createToken(userInfo);
@@ -34,6 +45,10 @@ const auth_login = async (req, res) => {
         const userInfo = {
             _id: user._id,
             email: user.email,
+            full_name: user.full_name,
+            phone: user.phone,
+            description: user.description,
+            username: user.username,
         };
 
         const token = utils.createToken(userInfo);

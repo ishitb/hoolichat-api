@@ -23,7 +23,7 @@ const handleErrors = (err) => {
     if (err.code === 11000) {
         errors.email = 'User with this email address already exists';
         errCode = 409;
-        return errors;
+        return { errCode, errors };
     }
 
     // validation errors

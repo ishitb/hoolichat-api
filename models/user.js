@@ -18,22 +18,21 @@ const userSchema = Schema(
             required: [true, 'Please enter a password'],
             minlength: [5, 'Minimum password length is 5 characters'],
         },
-        // full_name: {
-        //     type: String,
-        //     required: true,
-        // },
-        // username: {
-        //     type: String,
-        //     required: true,
-        // },
-        // phone: {
-        //     type: String,
-        //     required: true,
-        // },
-        // status: {
-        //     type: String,
-        //     required: true,
-        // },
+        full_name: {
+            type: String,
+            required: true,
+        },
+        username: {
+            type: String,
+            required: true,
+        },
+        phone: {
+            type: String,
+            required: true,
+        },
+        description: {
+            type: String,
+        },
     },
     {
         timestamps: true,
