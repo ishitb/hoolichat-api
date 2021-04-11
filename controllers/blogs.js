@@ -1,4 +1,5 @@
 const Blog = require('../models/blog');
+const faker = require('faker');
 
 const Model = Blog;
 
@@ -16,6 +17,22 @@ const blog_add = (req, res) => {
     blog.save()
         .then((result) => {
             console.log(result);
+            res.send(result);
+        })
+        .catch((err) => {
+            console.log(err);
+            res.send({ message: 'internal Server Error' });
+        });
+};
+
+const blog_add_test = (req, res) => {
+    const blog = new Model({
+        title: faker.name.title(),
+        snippet: faker.hacker.phrase(),
+        body: faker.lorem.paragraph(),
+    });
+    blog.save()
+        .then((result) => {
             res.send(result);
         })
         .catch((err) => {
@@ -60,6 +77,7 @@ const blog_update = (req, res) => {
 module.exports = {
     blog_get_all,
     blog_add,
+    blog_add_test,
     blog_get_one,
     blog_delete,
     blog_update,
