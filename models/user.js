@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const { isEmail } = require('validator');
 
-const utils = require('../middleware/auth');
+const utils = require('../utils/auth');
 
 const Schema = mongoose.Schema;
 

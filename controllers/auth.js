@@ -1,5 +1,5 @@
 const Model = require('../models/user');
-const utils = require('../middleware/auth');
+const utils = require('../utils/auth');
 
 const auth_register = (req, res) => {
     const details = req.body;
