@@ -1,7 +1,9 @@
 const router = require('express').Router();
-const blogController = require('../controllers/blogs');
 
-router.get('/', blogController.blog_get_all);
+const blogController = require('../controllers/blogs');
+const { authenticate } = require('../middleware/auth');
+
+router.get('/', authenticate, blogController.blog_get_all);
 
 router.post('/', blogController.blog_add);
 
