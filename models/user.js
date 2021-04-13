@@ -60,6 +60,6 @@ userSchema.statics.login = async function (email, password) {
     throw Error('User with this email address does not exist');
 };
 
-const User = mongoose.model('user', userSchema);
+const User = mongoose.model('User', userSchema);
 
 module.exports = User;

@@ -66,9 +66,22 @@ const verifyPassword = (passwordAttempt, hashedPassword) => {
     return bcrypt.compare(passwordAttempt, hashedPassword);
 };
 
+const decodeToken = (token) => {
+    try {
+        const decodedToken = jwt.verify(token, config.jwt.secret);
+        const user_info = decodedToken;
+
+        return { ...user_info, status: 200 };
+    } catch (err) {
+        console.log(err);
+        return { message: 'Invalid Token!', status: 400 };
+    }
+};
+
 module.exports = {
     handleErrors,
     createToken,
     hashPassword,
     verifyPassword,
+    decodeToken,
 };
