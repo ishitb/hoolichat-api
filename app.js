@@ -31,7 +31,7 @@ const init = async () => {
 
     app.use(express.urlencoded({ extended: false }));
 
-    app.use(express.static('public'));
+    app.use('/public', express.static('public'));
 
     app.use('/', router.router);
 
