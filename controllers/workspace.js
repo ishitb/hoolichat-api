@@ -1,4 +1,5 @@
 const Workspace = require('../models/workspace');
+const Room = require('../models/room');
 const User = require('../models/user');
 const authUtils = require('../utils/auth');
 
@@ -62,13 +63,24 @@ const workspace_get_one = (req, res) => {
                         return;
                     }
 
-                    res.status(200).send({
-                        _id: result._id,
-                        organizer: user.full_name,
-                        name: result.name,
-                        createdAt: result.createdAt,
-                        updatedAt: result.updatedAt,
-                    });
+                    Room.find({ workspace: result._id })
+                        .then((rooms) => {
+                            res.status(200).send({
+                                _id: result._id,
+                                organizer: user.full_name,
+                                name: result.name,
+                                createdAt: result.createdAt,
+                                updatedAt: result.updatedAt,
+                                rooms,
+                            });
+                        })
+                        .catch((err) => {
+                            console.log(err);
+                            res.status(400).send({
+                                message: 'Internal Server Error',
+                            });
+                            return;
+                        });
                 })
                 .catch((err) => {
                     console.log(err);
@@ -89,7 +101,7 @@ const workspace_delete = (req, res) => {
         return;
     }
 
-    Model.findByIdAndDelete(req.params.id)
+    Model.findById(req.params.id)
         .then((result) => {
             const userId = result.organizer;
             User.findById(userId)
@@ -98,15 +110,36 @@ const workspace_delete = (req, res) => {
                         res.status(401).send({ message: 'Invalid Token!' });
                         return;
                     }
-
-                    res.status(200).send({
-                        message: `${req.params.id} - ${result.name} Deleted!`,
-                    });
                 })
                 .catch((err) => {
                     console.log(err);
                     res.status(400).send({ message: 'Internal Server Error' });
+                    return;
                 });
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(400).send({ message: 'Internal Server Error' });
+            return;
+        });
+
+    Model.findByIdAndDelete(req.params.id)
+        .then((result) => {
+            Room.deleteMany({ workspace: result._id })
+                .then((rooms) => {
+                    console.log('Rooms deleted');
+                })
+                .catch((err) => {
+                    console.log(err);
+                    res.status(400).send({
+                        message: 'Internal Server Error',
+                    });
+                    return;
+                });
+
+            res.status(200).send({
+                message: `${req.params.id} - ${result.name} Deleted!`,
+            });
         })
         .catch((err) => {
             console.log(err);

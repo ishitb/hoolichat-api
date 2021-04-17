@@ -8,7 +8,7 @@ const roomSchema = new Schema(
             type: String,
             required: true,
         },
-        desciption: {
+        description: {
             type: String,
         },
         workspace: {
