@@ -26,5 +26,5 @@ jobs:
     - run: npm i
     - run: npm run build --if-present
     - run: npm test --if-present
-    - run: hooli_links
-    - run: hooli_restart
+    - run: ln -s /home/azureuser/.hooliapi-env /home/azureuser/actions-runner/hooliapi/hoolichat-api/hoolichat-api/.env && ln -s /home/azureuser/hooliapi-logs /home/azureuser/actions-runner/hooliapi/hoolichat-api/hoolichat-api/logs
+    - run: pm2 restart HooliAPI
