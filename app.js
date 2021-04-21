@@ -1,5 +1,5 @@
 const express = require('express');
-const swaggerAutogen = require('swagger-autogen')();
+const cors = require('cors');
 
 const router = require('./routes/index');
 const config = require('./config');
@@ -24,6 +24,21 @@ const init = async () => {
      */
 
     app.set('trust proxy', 1);
+
+    let allowlist = [
+        'https://hooliapi.snu-labyrinth.tech',
+        'http://localhost:3001',
+    ];
+    let corsOptionsDelegate = function (req, callback) {
+        let corsOptions;
+        if (allowlist.indexOf(req.header('Origin')) !== -1) {
+            corsOptions = { origin: true }; // reflect (enable) the requested origin in the CORS response
+        } else {
+            corsOptions = { origin: false }; // disable CORS for this request
+        }
+        callback(null, corsOptions); // callback expects two parameters: error and options
+    };
+    app.use(cors(corsOptionsDelegate));
 
     app.set('view engine', 'ejs');
     app.disable('X-Powered-By');
