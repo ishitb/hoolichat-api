@@ -1,4 +1,5 @@
 const express = require('express');
+const swaggerAutogen = require('swagger-autogen')();
 
 const router = require('./routes/index');
 const config = require('./config');

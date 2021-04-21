@@ -1,0 +1,483 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0",
+        "title": "HooliAPI",
+        "description": "API Documentation for HooliChat Backend"
+    },
+    "host": "localhost:3000",
+    "basePath": "/",
+    "tags": ["Docs"],
+    "schemes": ["http", "https"],
+    "consumes": [],
+    "produces": [],
+    "paths": {
+        "/docs": {
+            "get": {
+                "tags": ["Docs"],
+                "description": "",
+                "parameters": [],
+                "responses": {}
+            }
+        },
+        "/": {
+            "get": {
+                "tags": ["Docs"],
+                "description": "",
+                "parameters": [],
+                "responses": {}
+            }
+        },
+        "/blogs/": {
+            "get": {
+                "tags": ["Blog"],
+                "description": "",
+                "parameters": [],
+                "responses": {},
+                "headers": ["Authorization"]
+            },
+            "post": {
+                "tags": ["Blog"],
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "406": {
+                        "description": "Not Acceptable"
+                    }
+                }
+            }
+        },
+        "/blogs/test": {
+            "get": {
+                "tags": ["Blog"],
+                "description": "",
+                "parameters": [],
+                "responses": {}
+            }
+        },
+        "/blogs/{id}": {
+            "get": {
+                "tags": ["Blog"],
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {}
+            },
+            "delete": {
+                "tags": ["Blog"],
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {}
+            },
+            "patch": {
+                "tags": ["Blog"],
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/auth/register": {
+            "post": {
+                "tags": ["Auth"],
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    }
+                }
+            }
+        },
+        "/auth/login": {
+            "post": {
+                "tags": ["Auth"],
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "obj",
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "email": {
+                                    "type": "string",
+                                    "example": "any"
+                                },
+                                "password": {
+                                    "type": "string",
+                                    "example": "any"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "Accepted"
+                    }
+                }
+            }
+        },
+        "/workspace/": {
+            "get": {
+                "tags": ["Workspace"],
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string",
+                        "description": "An authorization header where User's JWT Token must be provided"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "406": {
+                        "description": "Not Acceptable"
+                    }
+                }
+            },
+            "post": {
+                "tags": ["Workspace"],
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string",
+                        "description": "An authorization header where User's JWT Token must be provided"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "406": {
+                        "description": "Not Acceptable"
+                    }
+                }
+            }
+        },
+        "/workspace/{id}": {
+            "get": {
+                "tags": ["Workspace"],
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string",
+                        "description": "An authorization header where User's JWT Token must be provided"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "406": {
+                        "description": "Not Acceptable"
+                    }
+                }
+            },
+            "delete": {
+                "tags": ["Workspace"],
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string",
+                        "description": "An authorization header where User's JWT Token must be provided"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "406": {
+                        "description": "Not Acceptable"
+                    }
+                }
+            },
+            "patch": {
+                "tags": ["Workspace"],
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string",
+                        "description": "An authorization header where User's JWT Token must be provided"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "406": {
+                        "description": "Not Acceptable"
+                    }
+                }
+            }
+        },
+        "/room/": {
+            "get": {
+                "tags": ["Room"],
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "obj",
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "workspace": {
+                                    "type": "string",
+                                    "example": "any"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string",
+                        "description": "An authorization header where User's JWT Token must be provided"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "406": {
+                        "description": "Not Acceptable"
+                    }
+                }
+            },
+            "post": {
+                "tags": ["Room"],
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "obj",
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "workspace": {
+                                    "type": "string",
+                                    "example": "any"
+                                },
+                                "name": {
+                                    "type": "string",
+                                    "example": "any"
+                                },
+                                "description": {
+                                    "type": "string",
+                                    "example": "any"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string",
+                        "description": "An authorization header where User's JWT Token must be provided"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "406": {
+                        "description": "Not Acceptable"
+                    }
+                }
+            }
+        },
+        "/room/{id}": {
+            "get": {
+                "tags": ["Room"],
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string",
+                        "description": "An authorization header where User's JWT Token must be provided"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "406": {
+                        "description": "Not Acceptable"
+                    }
+                }
+            },
+            "delete": {
+                "tags": ["Room"],
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "406": {
+                        "description": "Not Acceptable"
+                    }
+                }
+            },
+            "patch": {
+                "tags": ["Room"],
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "406": {
+                        "description": "Not Acceptable"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {}
+}
