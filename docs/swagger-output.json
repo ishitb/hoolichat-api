@@ -5,7 +5,6 @@
         "title": "HooliAPI",
         "description": "API Documentation for HooliChat Backend"
     },
-    "host": "localhost:3000",
     "basePath": "/",
     "tags": ["Docs"],
     "schemes": ["http", "https"],
