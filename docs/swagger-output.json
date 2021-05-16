@@ -7,7 +7,7 @@
     },
     "basePath": "/",
     "tags": ["Docs"],
-    "schemes": ["http", "https"],
+    "schemes": ["https", "http"],
     "consumes": [],
     "produces": [],
     "paths": {
