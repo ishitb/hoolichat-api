@@ -13,6 +13,13 @@ const workspaceSchema = new Schema(
             ref: 'User',
             required: true,
         },
+        users: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'User',
+                unique: true,
+            },
+        ],
     },
     {
         timestamps: true,

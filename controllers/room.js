@@ -1,3 +1,5 @@
+const { request, response } = require('express');
+
 const Room = require('../models/room');
 const User = require('../models/user');
 const authUtils = require('../utils/auth');
@@ -19,7 +21,7 @@ const room_get_all = (req, res) => {
         return;
     }
 
-    Model.find({ workspace: workspace })
+    Model.find({ workspace: workspace, users: decodedToken._id })
         .then((result) => res.status(200).send(result))
         .catch((err) => {
             console.log(err);
@@ -35,7 +37,11 @@ const room_add = (req, res) => {
         return;
     }
 
-    const room = new Model({ organizer: decodedToken._id, ...req.body });
+    const room = new Model({
+        organizer: decodedToken._id,
+        ...req.body,
+        users: [decodedToken._id],
+    });
 
     room.save()
         .then((result) => {
@@ -89,7 +95,7 @@ const room_delete = (req, res) => {
         return;
     }
 
-    Model.findByIdAndDelete(req.params.id)
+    Model.findOneAndDelete({ _id: req.params.id, organizer: decodedToken._id })
         .then((result) =>
             res.status(200).send({
                 message: `${req.params.id} - ${result.name} Deleted!`,
@@ -103,6 +109,31 @@ const room_delete = (req, res) => {
 
 const room_update = (req, res) => {
     const token = req.headers.authorization;
+    console.log(token);
+    const decodedToken = authUtils.decodeToken(token);
+    if (decodedToken.status === 400) {
+        return res.status(401).send({ message: decodedToken.message });
+    }
+
+    const id = req.params.id;
+
+    Model.updateOne({ _id: id }, req.body, (err) => console.log(err))
+        .then((result) => {
+            res.status(200).send(result.n > 0);
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(400).send({ message: 'Internal Server Error' });
+        });
+};
+
+/**
+ * TODO: complete controller
+ * @param {request} req
+ * @param {response} res
+ */
+const room_add_user = (req, res) => {
+    const token = req.headers.authorization;
     const decodedToken = authUtils.decodeToken(token);
     if (decodedToken.status === 400) {
         res.status(401).send({ message: decodedToken.message });
@@ -111,7 +142,11 @@ const room_update = (req, res) => {
 
     const id = req.params.id;
 
-    Model.updateOne({ _id: id }, req.body, (err) => console.log(err))
+    Model.updateOne(
+        { _id: id, organizer: decodedToken._id },
+        { $push: { users: req.body.user } },
+        (err) => console.log(err),
+    )
         .then((result) => {
             res.status(200).send(result.n > 0);
         })
@@ -127,4 +162,5 @@ module.exports = {
     room_get_one,
     room_delete,
     room_update,
+    room_add_user,
 };

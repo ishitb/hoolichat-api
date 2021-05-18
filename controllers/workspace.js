@@ -1,3 +1,5 @@
+const { request, response } = require('express');
+
 const Workspace = require('../models/workspace');
 const Room = require('../models/room');
 const User = require('../models/user');
@@ -13,7 +15,7 @@ const workspace_get_all = (req, res) => {
         return;
     }
 
-    Model.find({ organizer: decodedToken._id })
+    Model.find({ users: decodedToken._id })
         .then((result) => res.status(200).send(result))
         .catch((err) => {
             console.log(err);
@@ -29,7 +31,11 @@ const workspace_add = (req, res) => {
         return;
     }
 
-    const workspace = new Model({ organizer: decodedToken._id, ...req.body });
+    const workspace = new Model({
+        organizer: decodedToken._id,
+        ...req.body,
+        users: [decodedToken._id],
+    });
 
     workspace
         .save()
@@ -53,16 +59,17 @@ const workspace_get_one = (req, res) => {
 
     const id = req.params.id;
 
-    Model.findById(id)
+    Model.findOne({ _id: id })
         .then((result) => {
+            if (!result) {
+                return res
+                    .status(404)
+                    .send({ message: 'Workspace not found!' });
+            }
+
             const userId = result.organizer;
             User.findById(userId)
                 .then((user) => {
-                    if (String(userId) !== String(decodedToken._id)) {
-                        res.status(401).send({ message: 'Invalid Token!' });
-                        return;
-                    }
-
                     Room.find({ workspace: result._id })
                         .then((rooms) => {
                             res.status(200).send({
@@ -123,7 +130,7 @@ const workspace_delete = (req, res) => {
             return;
         });
 
-    Model.findByIdAndDelete(req.params.id)
+    Model.findOneAndDelete({ _id: req.params.id, organizer: decodedToken._id })
         .then((result) => {
             Room.deleteMany({ workspace: result._id })
                 .then((rooms) => {
@@ -172,7 +179,9 @@ const workspace_update = (req, res) => {
             });
     });
 
-    Model.updateOne({ _id: id }, req.body, (err) => console.log(err))
+    Model.updateOne({ _id: id, organizer: decodedToken._id }, req.body, (err) =>
+        console.log(err),
+    )
         .then((result) => {
             res.status(200).send(result.n > 0);
         })
@@ -182,10 +191,75 @@ const workspace_update = (req, res) => {
         });
 };
 
+/**
+ * @param {request} req
+ * @param {response} res
+ */
+const workspace_add_user = async (req, res) => {
+    const token = req.headers.authorization;
+    const decodedToken = authUtils.decodeToken(token);
+    if (decodedToken.status === 400) {
+        res.status(401).send({ message: decodedToken.message });
+        return;
+    }
+
+    const id = req.params.id;
+    const newUser = decodedToken._id;
+
+    Model.findById(id)
+        .then((result) => {
+            // Workspace not found
+            if (!result) {
+                res.status(404).send({ message: 'Workspace not found' });
+                return;
+            }
+
+            // Checking if use already in workspace
+            if (result.users.includes(newUser)) {
+                res.status(409).send({ message: 'User already in Workspace' });
+                return;
+            }
+
+            // Adding user to workspace
+            result.users = [...result.users, newUser];
+            result.save();
+
+            // Adding user to unrestricted rooms
+            Room.find({ workspace: result._id, restricted: false })
+                .then((rooms) => {
+                    if (!rooms) {
+                        console.log('No unrestricted rooms');
+                    } else {
+                        rooms.forEach((room) => {
+                            if (!room.users.inclues(newUser)) {
+                                room.users = [...room.users, newUser];
+                                room.save();
+                            }
+                        });
+                    }
+                })
+                .catch((e) => {
+                    console.log(e);
+                    res.status(400).send({ message: 'Internal Server Error' });
+                    return;
+                });
+
+            return res.status(201).send({
+                result,
+                message: 'User added to workspace and unrestricted rooms',
+            });
+        })
+        .catch((err) => {
+            console.log(err);
+            return res.status(400).send({ message: 'Internal Server Error' });
+        });
+};
+
 module.exports = {
     workspace_get_all,
     workspace_add,
     workspace_get_one,
     workspace_delete,
     workspace_update,
+    workspace_add_user,
 };

@@ -16,6 +16,17 @@ const roomSchema = new Schema(
             ref: 'Workspace',
             required: true,
         },
+        users: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'User',
+                unique: true,
+            },
+        ],
+        restricted: {
+            type: Boolean,
+            default: false,
+        },
     },
     {
         timestamps: true,
