@@ -1,8 +1,14 @@
 const Model = require('../models/user');
 const utils = require('../utils/auth');
+const cloudinaryUtil = require('../utils/cloudinary');
 
-const auth_register = (req, res) => {
+const auth_register = async (req, res) => {
     const details = req.body;
+
+    // Generating avatar
+    const avatarURL = await utils.avatarURLGenerator(details.full_name);
+    const imageURL = await cloudinaryUtil.uploadImage(avatarURL, details.phone);
+    details.image = imageURL;
 
     Model.create(details)
         .then((user) => {
@@ -13,6 +19,7 @@ const auth_register = (req, res) => {
                 phone,
                 description,
                 username,
+                image,
             } = user;
             const userInfo = {
                 _id,
@@ -21,6 +28,7 @@ const auth_register = (req, res) => {
                 phone,
                 description,
                 username,
+                image,
             };
 
             const token = utils.createToken(userInfo);
@@ -49,6 +57,7 @@ const auth_login = async (req, res) => {
             phone: user.phone,
             description: user.description,
             username: user.username,
+            image: user.image,
         };
 
         const token = utils.createToken(userInfo);

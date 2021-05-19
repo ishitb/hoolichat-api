@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+const axios = require('axios').default;
 
 const config = require('../config');
 
@@ -78,10 +79,17 @@ const decodeToken = (token) => {
     }
 };
 
+const avatarURLGenerator = (name) => {
+    return `https://ui-avatars.com/api/?name=${encodeURIComponent(
+        name,
+    )}&background=random&bold=true`;
+};
+
 module.exports = {
     handleErrors,
     createToken,
     hashPassword,
     verifyPassword,
     decodeToken,
+    avatarURLGenerator,
 };
