@@ -9,7 +9,7 @@ module.exports = {
     },
     jwt: {
         secret: process.env.JWT_SECRET || 'HooliChat Secret',
-        expiry: '30d',
+        expiry: 60 * 60 * 24 * 30, // 30 Days
         algorithm: 'HS256',
     },
     cloudinary: {
