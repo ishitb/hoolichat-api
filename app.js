@@ -1,8 +1,10 @@
 const express = require('express');
+const http = require('http');
 const cors = require('cors');
 
 const router = require('./routes/index');
 const config = require('./config');
+const socketio = require('./sockets/index');
 
 const app = express();
 
@@ -15,12 +17,13 @@ const init = async () => {
      * Middleware priority
      *
      * 0. Security (CORS, other headers)
-     * 1. DB Connection
+     * 1. View Engine
      * 2. JSON parser
      * 3. URLEncoded parser
      * 4. Static generator
-     * 5. Team based rate limiter
-     * 6. Router
+     * 5. Router
+     * 6. Socket config
+     * 7. Server Start
      */
 
     app.set('trust proxy', 1);
@@ -28,6 +31,7 @@ const init = async () => {
     let allowlist = [
         'https://hooliapi.snu-labyrinth.tech',
         'http://localhost:3001',
+        'http://127.0.0.1:5500',
     ];
     let corsOptionsDelegate = function (req, callback) {
         let corsOptions;
@@ -51,7 +55,14 @@ const init = async () => {
 
     app.use('/', router.router);
 
-    app.listen(config.port, () => {
+    // Server set
+    const httpServer = http.createServer(app);
+
+    // Sockets
+    socketio.socketConnection(httpServer);
+
+    httpServer.listen(config.port);
+    httpServer.on('listening', () => {
         console.log(`Now tuning into port: ${config.port}`);
     });
 };

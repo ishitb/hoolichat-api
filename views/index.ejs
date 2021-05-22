@@ -13,5 +13,11 @@
         <h1>Welcome to <%= title %></h1>
         <h2>Started Basic Docs with Swagger:</h2>
         <a target="_blank" href="/docs">Docs</a>
+
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+            const socket = io();
+            socket.on('message', (message) => console.log(message));
+        </script>
     </body>
 </html>

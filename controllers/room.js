@@ -3,6 +3,7 @@ const { request, response } = require('express');
 const Room = require('../models/room');
 const Workspace = require('../models/workspace');
 const authUtils = require('../utils/auth');
+const roomUtils = require('../utils/rooms');
 
 const Model = Room;
 
@@ -131,7 +132,7 @@ const room_update = (req, res) => {
  * @param {request} req
  * @param {response} res
  */
-const room_add_user = (req, res) => {
+const room_add_user = async (req, res) => {
     const token = req.headers.authorization;
     const decodedToken = authUtils.decodeToken(token);
     if (decodedToken.status === 400) {
@@ -142,57 +143,12 @@ const room_add_user = (req, res) => {
     const id = req.params.id;
     const newUser = req.body.newUser;
 
-    Model.findById(id)
-        .then(async (result) => {
-            // Workspace not found
-            if (!result) {
-                res.status(404).send({ message: 'Workspace not found' });
-                return;
-            }
+    const { status, message } = await roomUtils.addUser({
+        roomID: id,
+        newUser,
+    });
 
-            const workspaceID = result.workspace;
-            Workspace.find({ _id: workspaceID })
-                .then((workspace) => {
-                    if (!workspace) {
-                        res.status(400).send({
-                            message: 'Internal Server Error',
-                        });
-                        return;
-                    }
-
-                    if (!workspace.users.includes(newUser)) {
-                        res.status(401).send({
-                            message:
-                                "User not authorized in workspace. Can't add to room",
-                        });
-                        return;
-                    }
-                })
-                .catch((e) => {
-                    console.log(e);
-                    res.status(400).send({ message: 'Internal Server Error' });
-                    return;
-                });
-
-            // Checking if use already in workspace
-            if (result.users.includes(newUser)) {
-                res.status(409).send({ message: 'User already in Room' });
-                return;
-            }
-
-            // Adding user to room
-            result.users = [...result.users, newUser];
-            result.save();
-
-            return res.status(201).send({
-                result,
-                message: 'User added to room',
-            });
-        })
-        .catch((err) => {
-            console.log(err);
-            return res.status(400).send({ message: 'Internal Server Error' });
-        });
+    return res.status(status).send(message);
 };
 
 module.exports = {

@@ -8,15 +8,17 @@ const blogRoute = require('./blogs').router;
 const authRoute = require('./auth').router;
 const workspaceRoute = require('./workspace').router;
 const roomRoute = require('./room').router;
+const messageRoute = require('./message').router;
 
 router.use('/', homeRoute);
 router.use('/blogs', blogRoute);
 router.use('/auth', authRoute);
 router.use('/workspace', authenticate, workspaceRoute);
 router.use('/room', authenticate, roomRoute);
+router.use('/messages', authenticate, messageRoute);
 
 // Swagger Docs
-swaggerDocs.host = process.env.PRODUCTION_URL || 'localhost:3000'
+swaggerDocs.host = process.env.PRODUCTION_URL || 'localhost:3000';
 router.use('/docs', swaggerUI.serve);
 router.get('/docs', swaggerUI.setup(swaggerDocs));
 
