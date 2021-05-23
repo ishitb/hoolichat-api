@@ -18,9 +18,10 @@ const roomSchema = new Schema(
         },
         users: [
             {
-                type: Schema.Types.ObjectId,
-                ref: 'User',
-                unique: true,
+                // type: Schema.Types.ObjectId,
+                type: String,
+                // ref: 'User',
+                // unique: false,
             },
         ],
         restricted: {

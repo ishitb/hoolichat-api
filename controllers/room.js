@@ -38,20 +38,52 @@ const room_add = (req, res) => {
         return;
     }
 
-    const room = new Model({
-        organizer: decodedToken._id,
-        ...req.body,
-        users: [decodedToken._id],
-    });
+    const workspaceID = req.body.workspace;
+    Workspace.findOne({ _id: workspaceID })
+        .then((workspace) => {
+            if (!workspace) {
+                res.status(404).send({ message: 'Workspace not found!' });
+                return;
+            }
 
-    room.save()
-        .then((result) => {
-            console.log(result);
-            res.status(201).send(result);
+            if (workspace.organizer != decodedToken._id) {
+                res.status(401).send({
+                    message: 'User not authorized to add room',
+                });
+                return;
+            }
+
+            const restricted = req.body.restricted;
+
+            let room = null;
+            if (restricted) {
+                room = new Model({
+                    organizer: decodedToken._id,
+                    ...req.body,
+                    users: [decodedToken._id],
+                });
+            } else {
+                room = new Model({
+                    organizer: decodedToken._id,
+                    ...req.body,
+                    users: [...workspace.users],
+                });
+            }
+
+            room.save()
+                .then((result) => {
+                    return res.status(201).send(result);
+                })
+                .catch((err) => {
+                    console.log(err);
+                    return res
+                        .status(400)
+                        .send({ message: 'Internal Server Error' });
+                });
         })
         .catch((err) => {
             console.log(err);
-            res.status(400).send({ message: 'Internal Server Error' });
+            return res.status(400).send({ message: 'Internal Server Error' });
         });
 };
 
