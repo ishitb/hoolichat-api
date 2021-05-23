@@ -14,10 +14,46 @@
         <h2>Started Basic Docs with Swagger:</h2>
         <a target="_blank" href="/docs">Docs</a>
 
+        <br />
+        <input type="text" />
+        <button onclick="sendMessage()">Submit</button>
+
+        <div class="messages"></div>
+
         <script src="/socket.io/socket.io.js"></script>
         <script>
             const socket = io();
-            socket.on('message', (message) => console.log(message));
+
+            function outputMessage(message) {
+                const div = document.createElement('div');
+                div.classList.add('message');
+                const para = document.createElement('p');
+                para.classList.add('text');
+                para.innerText = message.text;
+                div.appendChild(para);
+                document.querySelector('.messages').appendChild(div);
+            }
+
+            socket.on('newMessage', (message) => {
+                console.log(message);
+                outputMessage(message);
+
+                // Scroll down
+            });
+
+            const sendMessage = async () => {
+                let msg = document.querySelector('input').value;
+                console.log(msg);
+                socket.emit('post-message', {
+                    msg,
+                    room: '60aa3e423b69630ab40789ec',
+                    user: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGEyZDg1YmU0MWUzNDE5OTBiZGQzMTUiLCJlbWFpbCI6InRlc3QxQHRlc3RpbmcuY29tIiwiZnVsbF9uYW1lIjoiVGVzdGluZyB1c2VyIiwicGhvbmUiOiI5ODc2NTQzMjEwIiwiZGVzY3JpcHRpb24iOiJUZXN0IERlc2NyaXB0aW9uLi4uIiwidXNlcm5hbWUiOiJ0ZXN0VXNlciIsImlhdCI6MTYyMTM0NTQ5NSwiZXhwIjoxNjIzOTM3NDk1fQ.Gx2HnhyDA4AVLCFV0Y4ThSEUjPyXQUVx9IO8RqQ3z14',
+                });
+            };
+
+            socket.on('message-error', (error) => {
+                console.error(error);
+            });
         </script>
     </body>
 </html>

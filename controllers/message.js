@@ -1,5 +1,6 @@
 const Model = require('../models/message');
 const Room = require('../models/room');
+const User = require('../models/user');
 const authUtils = require('../utils/auth');
 
 const message_get_all = async (req, res) => {
@@ -59,6 +60,77 @@ const message_get_all = async (req, res) => {
         });
 };
 
+const message_post = async ({ msg, room, user, socket }) => {
+    if ((!msg, !room, !user)) {
+        console.log('Please provide proper details');
+        socket.emit('message-error', 'Please provide proper details');
+        return;
+    }
+
+    // User validation
+    const token = user;
+    const decodedToken = authUtils.decodeToken(token);
+    if (decodedToken.status === 400) {
+        console.log(decodedToken);
+        socket.emit('message-error', 'User not properly authenticated');
+        return;
+    }
+
+    let fromUser = {};
+    User.findOne({ _id: decodedToken._id })
+        .then((result) => {
+            if (!result) {
+                console.log('User not found');
+                socket.emit('message-error', 'User not properly authenticated');
+                return;
+            }
+            fromUser = result;
+        })
+        .catch((e) => {
+            console.log(e);
+            socket.emit('message-error', 'User not properly authenticated');
+            return;
+        });
+
+    // Room Validation
+    Room.findOne({ _id: room })
+        .then((result) => {
+            if (!result) {
+                console.log('Room not found');
+                socket.emit('message-error', 'Room not found');
+                return;
+            }
+        })
+        .catch((e) => {
+            console.log(e);
+            socket.emit('message-error', 'Room not found');
+            return;
+        });
+
+    const message = new Model({
+        text: msg,
+        room: room,
+        user: decodedToken._id,
+    });
+    let newMessage = {};
+    await message
+        .save()
+        .then((result) => {
+            console.log(result);
+
+            newMessage = result;
+        })
+        .catch((err) => {
+            console.log(err);
+            socket.emit('message-error', `${err}`);
+            return;
+        });
+
+    newMessage.user = fromUser;
+    global.io.emit('newMessage', newMessage);
+};
+
 module.exports = {
     message_get_all,
+    message_post,
 };
