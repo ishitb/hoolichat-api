@@ -26,7 +26,7 @@ const room_get_all = (req, res) => {
         .then((result) => res.status(200).send(result))
         .catch((err) => {
             console.log(err);
-            res.status(400).send({ message: 'Internal Server Error' });
+            return res.status(400).send({ message: 'Internal Server Error' });
         });
 };
 
@@ -80,6 +80,7 @@ const room_add = (req, res) => {
                         .status(400)
                         .send({ message: 'Internal Server Error' });
                 });
+            return;
         })
         .catch((err) => {
             console.log(err);
@@ -106,17 +107,17 @@ const room_get_one = (req, res) => {
                 return;
             }
 
-            res.status(200).send(result);
+            return res.status(200).send(result);
         })
         .catch((err) => {
             if (err.name === 'CastError') {
-                res.status(406).send({
+                return res.status(406).send({
                     message: 'Please enter proper Room ID',
                 });
             }
 
             console.log(err);
-            res.status(400).send({ message: 'Internal Server Error' });
+            return res.status(400).send({ message: 'Internal Server Error' });
         });
 };
 
@@ -136,7 +137,7 @@ const room_delete = (req, res) => {
         )
         .catch((err) => {
             console.log(err);
-            res.status(400).send({ message: 'Internal Server Error' });
+            return res.status(400).send({ message: 'Internal Server Error' });
         });
 };
 
@@ -152,11 +153,11 @@ const room_update = (req, res) => {
 
     Model.updateOne({ _id: id }, req.body, (err) => console.log(err))
         .then((result) => {
-            res.status(200).send(result.n > 0);
+            return res.status(200).send(result.n > 0);
         })
         .catch((err) => {
             console.log(err);
-            res.status(400).send({ message: 'Internal Server Error' });
+            return res.status(400).send({ message: 'Internal Server Error' });
         });
 };
 

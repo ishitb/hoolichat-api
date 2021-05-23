@@ -39,7 +39,7 @@ const message_get_all = async (req, res) => {
                     res.send({ message: 'Internal Server Error' });
                 });
 
-            res.status(200).send(result);
+            return res.status(200).send(result);
         })
         .catch((err) => {
             if (err.name === 'CastError') {
@@ -49,7 +49,7 @@ const message_get_all = async (req, res) => {
             }
 
             console.log(err);
-            res.status(400).send({ message: 'Internal Server Error' });
+            return res.status(400).send({ message: 'Internal Server Error' });
         });
 
     Model.find({})

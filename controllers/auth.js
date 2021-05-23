@@ -33,7 +33,7 @@ const auth_register = async (req, res) => {
 
             const token = utils.createToken(userInfo);
 
-            res.status(201).send({
+            return res.status(201).send({
                 message: 'Successfully registered!',
                 token,
                 userInfo,
@@ -41,7 +41,7 @@ const auth_register = async (req, res) => {
         })
         .catch((err) => {
             const { errCode, errors } = utils.handleErrors(err);
-            res.status(errCode).send({ errors });
+            return res.status(errCode).send({ errors });
         });
 };
 
@@ -62,14 +62,14 @@ const auth_login = async (req, res) => {
 
         const token = utils.createToken(userInfo);
 
-        res.status(202).send({
+        return res.status(202).send({
             message: 'Successfully Logged In!',
             token,
             userInfo,
         });
     } catch (err) {
         const { errCode, errors } = utils.handleErrors(err);
-        res.status(errCode).send({ errors });
+        return res.status(errCode).send({ errors });
     }
 };
 

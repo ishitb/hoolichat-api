@@ -19,7 +19,7 @@ const workspace_get_all = (req, res) => {
         .then((result) => res.status(200).send(result))
         .catch((err) => {
             console.log(err);
-            res.status(400).send({ message: 'Internal Server Error' });
+            return res.status(400).send({ message: 'Internal Server Error' });
         });
 };
 
@@ -41,11 +41,11 @@ const workspace_add = (req, res) => {
         .save()
         .then((result) => {
             console.log(result);
-            res.status(201).send(result);
+            return res.status(201).send(result);
         })
         .catch((err) => {
             console.log(err);
-            res.status(400).send({ message: 'Internal Server Error' });
+            return res.status(400).send({ message: 'Internal Server Error' });
         });
 };
 
@@ -72,7 +72,7 @@ const workspace_get_one = (req, res) => {
                 .then((user) => {
                     Room.find({ workspace: result._id })
                         .then((rooms) => {
-                            res.status(200).send({
+                            return res.status(200).send({
                                 _id: result._id,
                                 organizer: user.full_name,
                                 name: result.name,
@@ -83,7 +83,7 @@ const workspace_get_one = (req, res) => {
                         })
                         .catch((err) => {
                             console.log(err);
-                            res.status(400).send({
+                            return res.status(400).send({
                                 message: 'Internal Server Error',
                             });
                             return;
@@ -91,12 +91,14 @@ const workspace_get_one = (req, res) => {
                 })
                 .catch((err) => {
                     console.log(err);
-                    res.status(400).send({ message: 'Internal Server Error' });
+                    return res
+                        .status(400)
+                        .send({ message: 'Internal Server Error' });
                 });
         })
         .catch((err) => {
             console.log(err);
-            res.status(400).send({ message: 'Internal Server Error' });
+            return res.status(400).send({ message: 'Internal Server Error' });
         });
 };
 
@@ -144,13 +146,13 @@ const workspace_delete = (req, res) => {
                     return;
                 });
 
-            res.status(200).send({
+            return res.status(200).send({
                 message: `${req.params.id} - ${result.name} Deleted!`,
             });
         })
         .catch((err) => {
             console.log(err);
-            res.status(400).send({ message: 'Internal Server Error' });
+            return res.status(400).send({ message: 'Internal Server Error' });
         });
 };
 
@@ -175,7 +177,9 @@ const workspace_update = (req, res) => {
             })
             .catch((err) => {
                 console.log(err);
-                res.status(400).send({ message: 'Internal Server Error' });
+                return res
+                    .status(400)
+                    .send({ message: 'Internal Server Error' });
             });
     });
 
@@ -183,11 +187,11 @@ const workspace_update = (req, res) => {
         console.log(err),
     )
         .then((result) => {
-            res.status(200).send(result.n > 0);
+            return res.status(200).send(result.n > 0);
         })
         .catch((err) => {
             console.log(err);
-            res.status(400).send({ message: 'Internal Server Error' });
+            return res.status(400).send({ message: 'Internal Server Error' });
         });
 };
 
