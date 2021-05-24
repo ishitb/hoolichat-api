@@ -42,7 +42,7 @@ const init = async () => {
         }
         callback(null, corsOptions); // callback expects two parameters: error and options
     };
-    app.use(cors(corsOptionsDelegate));
+    app.use(cors());
 
     app.set('view engine', 'ejs');
     app.disable('X-Powered-By');
