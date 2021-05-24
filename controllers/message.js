@@ -76,7 +76,7 @@ const message_post = async ({ msg, room, user, socket }) => {
         return;
     }
 
-    let fromUser = {};
+    // let fromUser = {};
     User.findOne({ _id: decodedToken._id })
         .then((result) => {
             if (!result) {
@@ -84,7 +84,7 @@ const message_post = async ({ msg, room, user, socket }) => {
                 socket.emit('message-error', 'User not properly authenticated');
                 return;
             }
-            fromUser = result;
+            // fromUser = result;
         })
         .catch((e) => {
             console.log(e);
@@ -126,7 +126,7 @@ const message_post = async ({ msg, room, user, socket }) => {
             return;
         });
 
-    newMessage.user = fromUser;
+    // newMessage.user = fromUser;
     global.io.emit('newMessage', newMessage);
 };
 

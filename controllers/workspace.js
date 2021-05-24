@@ -60,12 +60,21 @@ const workspace_get_one = (req, res) => {
     const id = req.params.id;
 
     Model.findOne({ _id: id })
-        .then((result) => {
+        .then(async (result) => {
             if (!result) {
                 return res
                     .status(404)
                     .send({ message: 'Workspace not found!' });
             }
+
+            let users = [];
+            await User.find({ _id: { $in: [...result.users] } })
+                .then((userResult) => {
+                    users = userResult;
+                })
+                .catch((e) => {
+                    console.log(e);
+                });
 
             const userId = result.organizer;
             User.findById(userId)
@@ -79,11 +88,12 @@ const workspace_get_one = (req, res) => {
                                 createdAt: result.createdAt,
                                 updatedAt: result.updatedAt,
                                 rooms,
+                                users,
                             });
                         })
                         .catch((err) => {
                             console.log(err);
-                            return res.status(400).send({
+                            res.status(400).send({
                                 message: 'Internal Server Error',
                             });
                             return;
