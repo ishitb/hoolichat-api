@@ -6,7 +6,7 @@
     "scripts": {
         "start": "node index",
         "dev": "nodemon index",
-        "test": "npm run lint",
+        "test": "node scripts/lint.js && npm run lint",
         "lint": "esw --color",
         "lint:fix": "esw --fix"
     },

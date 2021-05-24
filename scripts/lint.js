@@ -4,7 +4,5 @@ const chalk = require('chalk');
 exec('npm run lint', (error, stdout, stderr) => {
     if (!stderr) {
         global.console.log(chalk.greenBright('✔ No lLinting errors found!'));
-    } else {
-        global.console.log(stderr);
     }
 });
