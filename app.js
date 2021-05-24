@@ -63,7 +63,7 @@ const init = async () => {
 
     httpServer.listen(config.port);
     httpServer.on('listening', () => {
-        global.console.log(`Now tuning into port: ${config.port}`);
+        console.log(`Now tuning into port: ${config.port}`);
     });
 };
 
