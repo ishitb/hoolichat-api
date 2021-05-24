@@ -6,7 +6,7 @@
     "scripts": {
         "start": "node index",
         "dev": "nodemon index",
-        "test": "node scripts/lint.js && npm run lint",
+        "test": "node scripts/lint.js && npm run lint && mocha",
         "lint": "esw --color",
         "lint:fix": "esw --fix"
     },
@@ -35,6 +35,7 @@
         "eslint-config-prettier": "^8.3.0",
         "eslint-plugin-prettier": "^3.4.0",
         "eslint-watch": "^7.0.0",
+        "mocha": "^8.4.0",
         "nodemon": "^2.0.7",
         "swagger-autogen": "^2.7.9"
     }
