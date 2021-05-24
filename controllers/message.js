@@ -13,6 +13,7 @@ const message_get_all = async (req, res) => {
 
     const user = decodedToken;
     const roomID = req.body.roomID;
+    let since = req.body.since;
 
     Room.findById(roomID)
         .then((room) => {
@@ -30,16 +31,19 @@ const message_get_all = async (req, res) => {
                 return;
             }
 
-            Model.find({ room: roomID })
+            Model.find({
+                room: roomID,
+                createdAt: since
+                    ? { $gte: new Date(Number(since)) }
+                    : { $lte: new Date() },
+            })
                 .then((result) => {
-                    res.send(result);
+                    return res.send(result);
                 })
                 .catch((err) => {
                     console.log(err);
-                    res.send({ message: 'Internal Server Error' });
+                    return res.send({ message: 'Internal Server Error' });
                 });
-
-            return res.status(200).send(result);
         })
         .catch((err) => {
             if (err.name === 'CastError') {
@@ -50,13 +54,6 @@ const message_get_all = async (req, res) => {
 
             console.log(err);
             return res.status(400).send({ message: 'Internal Server Error' });
-        });
-
-    Model.find({})
-        .then((result) => res.send(result))
-        .catch((err) => {
-            console.log(err);
-            res.send({ message: 'Internal Server Error' });
         });
 };
 
