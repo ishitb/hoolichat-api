@@ -15,6 +15,8 @@ const room_get_all = (req, res) => {
         return;
     }
 
+    let workspace = '';
+
     try {
         workspace = req.body.workspace;
     } catch {
@@ -25,7 +27,7 @@ const room_get_all = (req, res) => {
     Model.find({ workspace: workspace, users: decodedToken._id })
         .then((result) => res.status(200).send(result))
         .catch((err) => {
-            console.log(err);
+            global.console.log(err);
             return res.status(400).send({ message: 'Internal Server Error' });
         });
 };
@@ -75,7 +77,7 @@ const room_add = (req, res) => {
                     return res.status(201).send(result);
                 })
                 .catch((err) => {
-                    console.log(err);
+                    global.console.log(err);
                     return res
                         .status(400)
                         .send({ message: 'Internal Server Error' });
@@ -83,7 +85,7 @@ const room_add = (req, res) => {
             return;
         })
         .catch((err) => {
-            console.log(err);
+            global.console.log(err);
             return res.status(400).send({ message: 'Internal Server Error' });
         });
 };
@@ -116,7 +118,7 @@ const room_get_one = (req, res) => {
                 });
             }
 
-            console.log(err);
+            global.console.log(err);
             return res.status(400).send({ message: 'Internal Server Error' });
         });
 };
@@ -136,14 +138,14 @@ const room_delete = (req, res) => {
             }),
         )
         .catch((err) => {
-            console.log(err);
+            global.console.log(err);
             return res.status(400).send({ message: 'Internal Server Error' });
         });
 };
 
 const room_update = (req, res) => {
     const token = req.headers.authorization;
-    console.log(token);
+    global.console.log(token);
     const decodedToken = authUtils.decodeToken(token);
     if (decodedToken.status === 400) {
         return res.status(401).send({ message: decodedToken.message });
@@ -151,12 +153,12 @@ const room_update = (req, res) => {
 
     const id = req.params.id;
 
-    Model.updateOne({ _id: id }, req.body, (err) => console.log(err))
+    Model.updateOne({ _id: id }, req.body, (err) => global.console.log(err))
         .then((result) => {
             return res.status(200).send(result.n > 0);
         })
         .catch((err) => {
-            console.log(err);
+            global.console.log(err);
             return res.status(400).send({ message: 'Internal Server Error' });
         });
 };

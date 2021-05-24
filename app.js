@@ -9,8 +9,8 @@ const socketio = require('./sockets/index');
 const app = express();
 
 const init = async () => {
-    if (!process.env.PORT) {
-        return console.error('PORT not present in the environment');
+    if (!global.process.env.PORT) {
+        return global.console.error('PORT not present in the environment');
     }
 
     /*
@@ -63,7 +63,7 @@ const init = async () => {
 
     httpServer.listen(config.port);
     httpServer.on('listening', () => {
-        console.log(`Now tuning into port: ${config.port}`);
+        global.console.log(`Now tuning into port: ${config.port}`);
     });
 };
 

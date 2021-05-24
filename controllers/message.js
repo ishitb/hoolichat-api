@@ -41,7 +41,7 @@ const message_get_all = async (req, res) => {
                     return res.send(result);
                 })
                 .catch((err) => {
-                    console.log(err);
+                    global.console.log(err);
                     return res.send({ message: 'Internal Server Error' });
                 });
         })
@@ -52,14 +52,14 @@ const message_get_all = async (req, res) => {
                 });
             }
 
-            console.log(err);
+            global.console.log(err);
             return res.status(400).send({ message: 'Internal Server Error' });
         });
 };
 
 const message_post = async ({ msg, room, user, socket }) => {
     if ((!msg, !room, !user)) {
-        console.log('Please provide proper details');
+        global.console.log('Please provide proper details');
         socket.emit('message-error', 'Please provide proper details');
         return;
     }
@@ -68,7 +68,7 @@ const message_post = async ({ msg, room, user, socket }) => {
     const token = user;
     const decodedToken = authUtils.decodeToken(token);
     if (decodedToken.status === 400) {
-        console.log(decodedToken);
+        global.console.log(decodedToken);
         socket.emit('message-error', 'User not properly authenticated');
         return;
     }
@@ -77,14 +77,14 @@ const message_post = async ({ msg, room, user, socket }) => {
     User.findOne({ _id: decodedToken._id })
         .then((result) => {
             if (!result) {
-                console.log('User not found');
+                global.console.log('User not found');
                 socket.emit('message-error', 'User not properly authenticated');
                 return;
             }
             // fromUser = result;
         })
         .catch((e) => {
-            console.log(e);
+            global.console.log(e);
             socket.emit('message-error', 'User not properly authenticated');
             return;
         });
@@ -93,13 +93,13 @@ const message_post = async ({ msg, room, user, socket }) => {
     Room.findOne({ _id: room })
         .then((result) => {
             if (!result) {
-                console.log('Room not found');
+                global.console.log('Room not found');
                 socket.emit('message-error', 'Room not found');
                 return;
             }
         })
         .catch((e) => {
-            console.log(e);
+            global.console.log(e);
             socket.emit('message-error', 'Room not found');
             return;
         });
@@ -113,12 +113,12 @@ const message_post = async ({ msg, room, user, socket }) => {
     await message
         .save()
         .then((result) => {
-            console.log(result);
+            global.console.log(result);
 
             newMessage = result;
         })
         .catch((err) => {
-            console.log(err);
+            global.console.log(err);
             socket.emit('message-error', `${err}`);
             return;
         });

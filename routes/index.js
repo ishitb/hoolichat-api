@@ -18,7 +18,7 @@ router.use('/room', authenticate, roomRoute);
 router.use('/messages', authenticate, messageRoute);
 
 // Swagger Docs
-swaggerDocs.host = process.env.PRODUCTION_URL || 'localhost:3000';
+swaggerDocs.host = global.process.env.PRODUCTION_URL || 'localhost:3000';
 router.use('/docs', swaggerUI.serve);
 router.get('/docs', swaggerUI.setup(swaggerDocs));
 

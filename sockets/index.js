@@ -12,7 +12,7 @@ const socketConnection = async (server) => {
     /**
      * @param {socketio.Socket} socket
      */
-    io.on('connection', (socket) => {
+    global.io.on('connection', (socket) => {
         socket.emit('message', 'Hello');
 
         socket.on('disconnect', (skt) => {

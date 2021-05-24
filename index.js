@@ -8,8 +8,8 @@ const config = require('./config');
 mongoose
     .connect(config.db.uri, config.db.options)
     .then((res) => {
-        console.log('Connected to DB');
+        global.console.log('Connected to DB');
 
         expressApp.init();
     })
-    .catch((err) => console.error(err));
+    .catch((err) => global.console.error(err));

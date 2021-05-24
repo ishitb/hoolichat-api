@@ -31,7 +31,7 @@ const addUser = async ({ roomID, newUser }) => {
                     }
                 })
                 .catch((e) => {
-                    console.log(e);
+                    global.console.log(e);
                     status = 400;
                     message = 'Internal Server Error';
                     return;
@@ -52,12 +52,12 @@ const addUser = async ({ roomID, newUser }) => {
             message = 'User added to room';
         })
         .catch((err) => {
-            console.log(err);
+            global.console.log(err);
             status = 400;
             message = 'Internal Server Error';
         });
 
-    console.log({ status, message });
+    global.console.log({ status, message });
 
     return { status, message };
 };

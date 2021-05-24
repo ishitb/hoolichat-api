@@ -74,7 +74,7 @@ const decodeToken = (token) => {
 
         return { ...user_info, status: 200 };
     } catch (err) {
-        console.log(err);
+        global.console.log(err);
         return { message: 'Invalid Token!', status: 400 };
     }
 };

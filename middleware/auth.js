@@ -15,7 +15,7 @@ const authenticate = (req, res, next) => {
         req.user = decodedToken;
         next();
     } catch (err) {
-        console.log(err);
+        global.console.log(err);
         res.status(406).send({ message: err.message });
     }
 };
