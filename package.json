@@ -6,8 +6,9 @@
     "scripts": {
         "start": "node index",
         "dev": "nodemon index",
-        "test": "node scripts/lint.js",
-        "lint": "esw --color"
+        "test": "npm run lint",
+        "lint": "esw --color",
+        "lint:fix": "esw --fix"
     },
     "author": "Ishit Beswal <https://github.com/ishitb> (DevilIsh)",
     "repository": "https://github.com/ishitb/hoolichat-api",
