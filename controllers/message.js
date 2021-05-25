@@ -58,9 +58,23 @@ const message_get_all = async (req, res) => {
 };
 
 const message_post = async ({ msg, room, user, socket }) => {
-    if ((!msg, !room, !user)) {
-        global.console.log('Please provide proper details');
-        socket.emit('message-error', 'Please provide proper details');
+    gloabl.console.log({ msg, room, user });
+
+    if (!msg) {
+        global.console.log('Please provide proper text message');
+        socket.emit('message-error', 'Please provide text message');
+        return;
+    }
+
+    if (!room) {
+        global.console.log('Please provide room ID');
+        socket.emit('message-error', 'Please provide room ID');
+        return;
+    }
+
+    if (!user) {
+        global.console.log('Please provide user Token');
+        socket.emit('message-error', 'Please provide user Token');
         return;
     }
 
