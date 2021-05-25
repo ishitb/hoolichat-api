@@ -21,6 +21,7 @@ const socketConnection = async (server) => {
         });
 
         socket.on('post-message', (socketDetails) => {
+            global.console.log({ socketDetails });
             messageMethods.message_post({
                 msg: socketDetails.msg,
                 room: socketDetails.room,
