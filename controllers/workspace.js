@@ -81,7 +81,7 @@ const workspace_get_one = (req, res) => {
                 .then((user) => {
                     Room.find({ workspace: result._id })
                         .then((rooms) => {
-                            return res.status(200).send({
+                            res.status(200).send({
                                 _id: result._id,
                                 organizer: user.full_name,
                                 name: result.name,
@@ -90,6 +90,7 @@ const workspace_get_one = (req, res) => {
                                 rooms,
                                 users,
                             });
+                            return;
                         })
                         .catch((err) => {
                             global.console.log(err);
@@ -101,9 +102,8 @@ const workspace_get_one = (req, res) => {
                 })
                 .catch((err) => {
                     global.console.log(err);
-                    return res
-                        .status(400)
-                        .send({ message: 'Internal Server Error' });
+                    res.status(400).send({ message: 'Internal Server Error' });
+                    return;
                 });
         })
         .catch((err) => {
@@ -187,9 +187,8 @@ const workspace_update = (req, res) => {
             })
             .catch((err) => {
                 global.console.log(err);
-                return res
-                    .status(400)
-                    .send({ message: 'Internal Server Error' });
+                res.status(400).send({ message: 'Internal Server Error' });
+                return;
             });
     });
 
@@ -245,7 +244,7 @@ const workspace_add_user = async (req, res) => {
                         global.console.log('No unrestricted rooms');
                     } else {
                         rooms.forEach((room) => {
-                            if (!room.users.inclues(newUser)) {
+                            if (!room.users.includes(newUser)) {
                                 room.users = [...room.users, newUser];
                                 room.save();
                             }
