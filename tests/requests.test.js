@@ -28,12 +28,6 @@ global.describe('Workspace PATCH Test', () => {
     });
 });
 
-global.describe('Workspace DELETE Test', () => {
-    global.it('Workspace Deleted successfully', () => {
-        global.expect(true).toBe(true);
-    });
-});
-
 global.describe('Room POST Test', () => {
     global.it('New Room added!', () => {
         global.expect(true).toBe(true);
@@ -54,6 +48,12 @@ global.describe('Room PATCH Test', () => {
 
 global.describe('Room DELETE Test', () => {
     global.it('Room Deleted successfully', () => {
+        global.expect(true).toBe(true);
+    });
+});
+
+global.describe('Workspace DELETE Test', () => {
+    global.it('Workspace Deleted successfully', () => {
         global.expect(true).toBe(true);
     });
 });
