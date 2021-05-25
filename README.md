@@ -1,4 +1,4 @@
-![hoolichat-api](https://socialify.git.ci/ishitb/hoolichat-api/image?description=1&descriptionEditable=Intellimart%3A%20A%20Smart%20shopping%20system%20during%20the%20pandemic.&forks=1&issues=1&owner=1&pattern=Floating%20Cogs&stargazers=1&theme=Light)
+![hoolichat-api](https://socialify.git.ci/ishitb/hoolichat-api/image?description=1&font=Raleway&forks=1&issues=1&language=1&owner=1&pattern=Circuit%20Board&pulls=1&stargazers=1&theme=Dark)
 
 <h1 align="center">
    💻 HooliChat
@@ -24,7 +24,7 @@
     <a href="https://www.mongodb.com/"><img alt="MongoDB 4.0,4.2,4.4" src="https://img.shields.io/badge/mongodb-4.0,_4.2,_4.4-green.svg?logo=mongodb&style=flat"></a>
 </p>
 
-HooliChat API works with the Express web application framework. An [API reference](http://parseplatform.org/hoolichat-api/api/) with SwaggerUI is available.
+HooliChat API works with the Express web application framework. An [API reference](http://hooliapi.snu-labyrinth.tech/docs) with SwaggerUI is available.
 
 -   [Introduction](#introduction)
 -   [Technology Stack](#⚡technology-stack)
