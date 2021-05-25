@@ -1,4 +1,11 @@
-<p align="center"><img src="https://socialify.git.ci/ishitb/hoolichat-api/image?description=1&font=Raleway&forks=1&issues=1&language=1&owner=1&pattern=Circuit%20Board&pulls=1&stargazers=1&theme=Dark" alt="hoolichat-api" width="640" height="320" /></p>
+<p align="center"><img src="https://socialify.git.ci/ishitb/hoolichat-api/image?description=1&language=1&owner=1&pattern=Circuit%20Board&theme=Dark" alt="hoolichat-api" width="640" height="320" /></p>
+
+![Maintaner](https://img.shields.io/badge/maintainer-IshitBeswal-blue)
+[![Website shields.io](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](http://hooliapi.snu-labyrinth.tech/docs/)
+[![GitHub issues](https://img.shields.io/github/issues/ishitb/hoolichat-api.svg)](https://GitHub.com/ishitb/hoolichat-api/issues/)
+[![GitHub issues-closed](https://img.shields.io/github/issues-closed/ishitb/hoolichat-api.svg)](https://GitHub.com/ishitb/hoolichat-api/issues?q=is%3Aissue+is%3Aclosed)
+[![Open Source? Yes!](https://badgen.net/badge/Open%20Source%20%3F/Yes%21/blue?icon=github)](https://github.com/ishitb/hoolichat-api/)
+
 
 <h1 align="center">
    💻 HooliChat
