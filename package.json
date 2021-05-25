@@ -6,9 +6,10 @@
     "scripts": {
         "start": "node index",
         "dev": "nodemon index",
-        "test": "node scripts/lint.js && npm run lint && mocha",
+        "test": "node scripts/lint.js && npm run lint && npm run jest",
         "lint": "esw --color",
-        "lint:fix": "esw --fix"
+        "lint:fix": "esw --fix",
+        "jest": "jest"
     },
     "author": "Ishit Beswal <https://github.com/ishitb> (DevilIsh)",
     "repository": "https://github.com/ishitb/hoolichat-api",
@@ -35,8 +36,9 @@
         "eslint-config-prettier": "^8.3.0",
         "eslint-plugin-prettier": "^3.4.0",
         "eslint-watch": "^7.0.0",
-        "mocha": "^8.4.0",
+        "jest": "^27.0.1",
         "nodemon": "^2.0.7",
+        "supertest": "^6.1.3",
         "swagger-autogen": "^2.7.9"
     }
 }
