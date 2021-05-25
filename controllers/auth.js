@@ -3,6 +3,9 @@ const utils = require('../utils/auth');
 const cloudinaryUtil = require('../utils/cloudinary');
 
 const auth_register = async (req, res) => {
+    // #swagger.tags = ['Users']
+    // #swagger.produces = ['application/json']
+
     const details = req.body;
 
     // Generating avatar
@@ -46,6 +49,9 @@ const auth_register = async (req, res) => {
 };
 
 const auth_login = async (req, res) => {
+    // #swagger.tags = ['Users']
+    // #swagger.produces = ['application/json']
+
     const { email, password } = req.body;
 
     try {

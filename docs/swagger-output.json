@@ -102,7 +102,41 @@
             "post": {
                 "tags": ["Auth"],
                 "description": "",
-                "parameters": [],
+                "parameters": [
+                    {
+                        "name": "obj",
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "email": {
+                                    "type": "string",
+                                    "example": "john@doe.com"
+                                },
+                                "password": {
+                                    "type": "string",
+                                    "example": "johnDoe@123"
+                                },
+                                "full_name": {
+                                    "type": "string",
+                                    "example": "John Doe"
+                                },
+                                "phone": {
+                                    "type": "string",
+                                    "example": "9876543210"
+                                },
+                                "description": {
+                                    "type": "string",
+                                    "example": "Description"
+                                },
+                                "username": {
+                                    "type": "string",
+                                    "example": "JDoe"
+                                }
+                            }
+                        }
+                    }
+                ],
                 "responses": {
                     "201": {
                         "description": "Created"
@@ -123,11 +157,11 @@
                             "properties": {
                                 "email": {
                                     "type": "string",
-                                    "example": "any"
+                                    "example": "john@doe.com"
                                 },
                                 "password": {
                                     "type": "string",
-                                    "example": "any"
+                                    "example": "johnDoe@123"
                                 }
                             }
                         }
@@ -293,6 +327,40 @@
                     },
                     "406": {
                         "description": "Not Acceptable"
+                    }
+                }
+            }
+        },
+        "/workspace/add-user/{id}": {
+            "patch": {
+                "tags": ["Workspace"],
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "406": {
+                        "description": "Not Acceptable"
+                    },
+                    "409": {
+                        "description": "Conflict"
                     }
                 }
             }
@@ -468,6 +536,41 @@
                     "400": {
                         "description": "Bad Request"
                     },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "406": {
+                        "description": "Not Acceptable"
+                    }
+                }
+            }
+        },
+        "/room/add-user/{id}": {
+            "patch": {
+                "tags": ["Room"],
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "obj",
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "newUser": {
+                                    "type": "string",
+                                    "example": "any"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
                     "401": {
                         "description": "Unauthorized"
                     },

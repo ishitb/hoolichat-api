@@ -9,7 +9,8 @@
         "test": "node scripts/lint.js && npm run lint && npm run jest",
         "lint": "esw --color",
         "lint:fix": "esw --fix",
-        "jest": "jest"
+        "jest": "jest",
+        "swagger:gen": "node docs/swaggerBuild.js"
     },
     "author": "Ishit Beswal <https://github.com/ishitb> (DevilIsh)",
     "repository": "https://github.com/ishitb/hoolichat-api",
