@@ -9,15 +9,16 @@ const socketConnection = async (server) => {
         },
     });
 
-    /**
-     * @param {socketio.Socket} socket
-     */
     global.io.on('connection', (socket) => {
-        socket.emit('message', 'Hello');
+        socket.emit('test-message', 'Hello');
 
         socket.on('disconnect', (skt) => {
             global.io.emit('disconneced', { skt });
         });
+
+        socket.on('test', details => {
+            console.log(details)
+        })
 
         socket.on('post-message', (socketDetails) => {
             messageMethods.message_post({
