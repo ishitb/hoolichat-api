@@ -1,0 +1,518 @@
+{
+	"info": {
+		"_postman_id": "045d6efd-d95f-4973-ba6c-288a47828e66",
+		"name": "HooliAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get All Messages",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGEyZDg1YmU0MWUzNDE5OTBiZGQzMTUiLCJlbWFpbCI6InRlc3QxQHRlc3RpbmcuY29tIiwiZnVsbF9uYW1lIjoiVGVzdGluZyB1c2VyIiwicGhvbmUiOiI5ODc2NTQzMjEwIiwiZGVzY3JpcHRpb24iOiJUZXN0IERlc2NyaXB0aW9uLi4uIiwidXNlcm5hbWUiOiJ0ZXN0VXNlciIsImlhdCI6MTYyMTM0NTQ5NSwiZXhwIjoxNjIzOTM3NDk1fQ.Gx2HnhyDA4AVLCFV0Y4ThSEUjPyXQUVx9IO8RqQ3z14"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Updated Room\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3000/room/60a3d30a348eab03688b7abd",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"room",
+						"60a3d30a348eab03688b7abd"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET All Rooms of User",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGEyZDg1YmU0MWUzNDE5OTBiZGQzMTUiLCJlbWFpbCI6InRlc3QxQHRlc3RpbmcuY29tIiwiZnVsbF9uYW1lIjoiVGVzdGluZyB1c2VyIiwicGhvbmUiOiI5ODc2NTQzMjEwIiwiZGVzY3JpcHRpb24iOiJUZXN0IERlc2NyaXB0aW9uLi4uIiwidXNlcm5hbWUiOiJ0ZXN0VXNlciIsImlhdCI6MTYyMTM0NTQ5NSwiZXhwIjoxNjIzOTM3NDk1fQ.Gx2HnhyDA4AVLCFV0Y4ThSEUjPyXQUVx9IO8RqQ3z14"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"workspace\": \"60a3cd7cc6a0df2b58d851f4\" \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3000/room",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"room"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UPDATE Add User to Room",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGEyZDg1YmU0MWUzNDE5OTBiZGQzMTUiLCJlbWFpbCI6InRlc3QxQHRlc3RpbmcuY29tIiwiZnVsbF9uYW1lIjoiVGVzdGluZyB1c2VyIiwicGhvbmUiOiI5ODc2NTQzMjEwIiwiZGVzY3JpcHRpb24iOiJUZXN0IERlc2NyaXB0aW9uLi4uIiwidXNlcm5hbWUiOiJ0ZXN0VXNlciIsImlhdCI6MTYyMTM0NTQ5NSwiZXhwIjoxNjIzOTM3NDk1fQ.Gx2HnhyDA4AVLCFV0Y4ThSEUjPyXQUVx9IO8RqQ3z14",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Updated Workspace 1\",\r\n    \"newUser\": \"60a2d86be41e341990bdd316\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3000/room/add-user/60aa3e423b69630ab40789ec",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"room",
+						"add-user",
+						"60aa3e423b69630ab40789ec"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RETRIEVE Room",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGEyZDg1YmU0MWUzNDE5OTBiZGQzMTUiLCJlbWFpbCI6InRlc3QxQHRlc3RpbmcuY29tIiwiZnVsbF9uYW1lIjoiVGVzdGluZyB1c2VyIiwicGhvbmUiOiI5ODc2NTQzMjEwIiwiZGVzY3JpcHRpb24iOiJUZXN0IERlc2NyaXB0aW9uLi4uIiwidXNlcm5hbWUiOiJ0ZXN0VXNlciIsImlhdCI6MTYyMTM0NTQ5NSwiZXhwIjoxNjIzOTM3NDk1fQ.Gx2HnhyDA4AVLCFV0Y4ThSEUjPyXQUVx9IO8RqQ3z14"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3000/room/60a3d30a348eab03688b7abd",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"room",
+						"60a3d30a348eab03688b7abd"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE Room",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDczMmU4ZmQ0MDZjODE4ZWMzN2EwNTEiLCJlbWFpbCI6InRlc3Q1QHRlc3RpbmcuY29tIiwiZnVsbF9uYW1lIjoiVGVzdGluZyB1c2VyIiwicGhvbmUiOiI5ODc2NTQzMjEwIiwiZGVzY3JpcHRpb24iOiJUZXN0IERlc2NyaXB0aW9uLi4uIiwidXNlcm5hbWUiOiJ0ZXN0VXNlciIsImlhdCI6MTYxODMzNDk4OCwiZXhwIjoxNjIwOTI2OTg4fQ.qHs3PA0T-8pBv8M65XIU5PzJ6D_lH3NP-OeIs89LL34"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:3000/room/607af35c3a79a5290cb48936",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"room",
+						"607af35c3a79a5290cb48936"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UPDATE Room",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGEyZDg1YmU0MWUzNDE5OTBiZGQzMTUiLCJlbWFpbCI6InRlc3QxQHRlc3RpbmcuY29tIiwiZnVsbF9uYW1lIjoiVGVzdGluZyB1c2VyIiwicGhvbmUiOiI5ODc2NTQzMjEwIiwiZGVzY3JpcHRpb24iOiJUZXN0IERlc2NyaXB0aW9uLi4uIiwidXNlcm5hbWUiOiJ0ZXN0VXNlciIsImlhdCI6MTYyMTM0NTQ5NSwiZXhwIjoxNjIzOTM3NDk1fQ.Gx2HnhyDA4AVLCFV0Y4ThSEUjPyXQUVx9IO8RqQ3z14"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"roomID\": \"60aa3e423b69630ab40789ec\",\r\n    \"since\": \"1621779789235\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3000/messages",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"messages"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Room",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGEyZDg2YmU0MWUzNDE5OTBiZGQzMTYiLCJlbWFpbCI6InRlc3QyQHRlc3RpbmcuY29tIiwiZnVsbF9uYW1lIjoiVGVzdGluZyB1c2VyIiwicGhvbmUiOiI5ODc2NTQzMjEwIiwiZGVzY3JpcHRpb24iOiJUZXN0IERlc2NyaXB0aW9uLi4uIiwidXNlcm5hbWUiOiJ0ZXN0VXNlciIsImlhdCI6MTYyMTg5NTIwMSwiZXhwIjoxNjI0NDg3MjAxfQ.M5T7IX_-nWSXZR3ELf46VezkQfzyKI6yLSGL0z6fWeM"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"workspace\": \"60ac2d7ffc43d61a911b4a3b\",\r\n    \"name\": \"Room 3\",\r\n    \"description\": \"Room 2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/room",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"room"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UPDATE Workspace",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGEyZDg2YmU0MWUzNDE5OTBiZGQzMTYiLCJlbWFpbCI6InRlc3QyQHRlc3RpbmcuY29tIiwiZnVsbF9uYW1lIjoiVGVzdGluZyB1c2VyIiwicGhvbmUiOiI5ODc2NTQzMjEwIiwiZGVzY3JpcHRpb24iOiJUZXN0IERlc2NyaXB0aW9uLi4uIiwidXNlcm5hbWUiOiJ0ZXN0VXNlciIsImlhdCI6MTYyMTM2OTY1MSwiZXhwIjoxNjIzOTYxNjUxfQ.8C4Xgj9ZlpitTVDJ1WWO2ischjU-mf8kwHWO36Hqibc",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:3000/workspace/add-user/60a3cd7cc6a0df2b58d851f4",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"workspace",
+						"add-user",
+						"60a3cd7cc6a0df2b58d851f4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UPDATE Add User (Yourself) to Workspace",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGEyZDg1YmU0MWUzNDE5OTBiZGQzMTUiLCJlbWFpbCI6InRlc3QxQHRlc3RpbmcuY29tIiwiZnVsbF9uYW1lIjoiVGVzdGluZyB1c2VyIiwicGhvbmUiOiI5ODc2NTQzMjEwIiwiZGVzY3JpcHRpb24iOiJUZXN0IERlc2NyaXB0aW9uLi4uIiwidXNlcm5hbWUiOiJ0ZXN0VXNlciIsImlhdCI6MTYyMTM0NTQ5NSwiZXhwIjoxNjIzOTM3NDk1fQ.Gx2HnhyDA4AVLCFV0Y4ThSEUjPyXQUVx9IO8RqQ3z14",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Updated Workspace 1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3000/workspace/60a3cd7cc6a0df2b58d851f4",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"workspace",
+						"60a3cd7cc6a0df2b58d851f4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RETRIEVE Workspace",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGEyZDg1YmU0MWUzNDE5OTBiZGQzMTUiLCJlbWFpbCI6InRlc3QxQHRlc3RpbmcuY29tIiwiZnVsbF9uYW1lIjoiVGVzdGluZyB1c2VyIiwicGhvbmUiOiI5ODc2NTQzMjEwIiwiZGVzY3JpcHRpb24iOiJUZXN0IERlc2NyaXB0aW9uLi4uIiwidXNlcm5hbWUiOiJ0ZXN0VXNlciIsImlhdCI6MTYyMTM0NTQ5NSwiZXhwIjoxNjIzOTM3NDk1fQ.Gx2HnhyDA4AVLCFV0Y4ThSEUjPyXQUVx9IO8RqQ3z14"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:3000/workspace/60a3cd7cc6a0df2b58d851f4",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"workspace",
+						"60a3cd7cc6a0df2b58d851f4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE Workspace",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDczMmU4ZmQ0MDZjODE4ZWMzN2EwNTEiLCJlbWFpbCI6InRlc3Q1QHRlc3RpbmcuY29tIiwiZnVsbF9uYW1lIjoiVGVzdGluZyB1c2VyIiwicGhvbmUiOiI5ODc2NTQzMjEwIiwiZGVzY3JpcHRpb24iOiJUZXN0IERlc2NyaXB0aW9uLi4uIiwidXNlcm5hbWUiOiJ0ZXN0VXNlciIsImlhdCI6MTYxODMzNDk4OCwiZXhwIjoxNjIwOTI2OTg4fQ.qHs3PA0T-8pBv8M65XIU5PzJ6D_lH3NP-OeIs89LL34"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:3000/workspace/607af60dcc88cf378c508db7",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"workspace",
+						"607af60dcc88cf378c508db7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST New Workspace",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGEyZDg2YmU0MWUzNDE5OTBiZGQzMTYiLCJlbWFpbCI6InRlc3QyQHRlc3RpbmcuY29tIiwiZnVsbF9uYW1lIjoiVGVzdGluZyB1c2VyIiwicGhvbmUiOiI5ODc2NTQzMjEwIiwiZGVzY3JpcHRpb24iOiJUZXN0IERlc2NyaXB0aW9uLi4uIiwidXNlcm5hbWUiOiJ0ZXN0VXNlciIsImlhdCI6MTYyMTg5NTIwMSwiZXhwIjoxNjI0NDg3MjAxfQ.M5T7IX_-nWSXZR3ELf46VezkQfzyKI6yLSGL0z6fWeM",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Workspace 1\",\r\n    \"_id\": \"11111a1a1a111a111a111111\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/workspace",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"workspace"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET All Worksapces of User",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGEyZDg1YmU0MWUzNDE5OTBiZGQzMTUiLCJlbWFpbCI6InRlc3QxQHRlc3RpbmcuY29tIiwiZnVsbF9uYW1lIjoiVGVzdGluZyB1c2VyIiwicGhvbmUiOiI5ODc2NTQzMjEwIiwiZGVzY3JpcHRpb24iOiJUZXN0IERlc2NyaXB0aW9uLi4uIiwidXNlcm5hbWUiOiJ0ZXN0VXNlciIsImlhdCI6MTYyMTM0NTQ5NSwiZXhwIjoxNjIzOTM3NDk1fQ.Gx2HnhyDA4AVLCFV0Y4ThSEUjPyXQUVx9IO8RqQ3z14",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3000/workspace",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"workspace"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"test2@testing.com\",\r\n    \"password\": \"password1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/auth/login",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"test5@testing.com\",\r\n    \"password\": \"password1234\",\r\n    \"full_name\": \"Testing user\",\r\n    \"username\": \"testUser\",\r\n    \"phone\": \"9876543210\",\r\n    \"description\": \"Test Description...\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://hooliapi.snu-labyrinth.tech/auth/register",
+					"protocol": "https",
+					"host": [
+						"hooliapi",
+						"snu-labyrinth",
+						"tech"
+					],
+					"path": [
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
