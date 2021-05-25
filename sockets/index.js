@@ -16,9 +16,9 @@ const socketConnection = async (server) => {
             global.io.emit('disconneced', { skt });
         });
 
-        socket.on('test', details => {
-            console.log(details)
-        })
+        socket.on('test', (details) => {
+            global.console.log(details);
+        });
 
         socket.on('post-message', (socketDetails) => {
             messageMethods.message_post({
