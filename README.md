@@ -1,4 +1,4 @@
-![hoolichat-api](https://socialify.git.ci/ishitb/hoolichat-api/image?description=1&font=Raleway&forks=1&issues=1&language=1&owner=1&pattern=Circuit%20Board&pulls=1&stargazers=1&theme=Dark)
+<p align="center"><img src="https://socialify.git.ci/ishitb/hoolichat-api/image?description=1&font=Raleway&forks=1&issues=1&language=1&owner=1&pattern=Circuit%20Board&pulls=1&stargazers=1&theme=Dark" alt="hoolichat-api" width="640" height="320" /></p>
 
 <h1 align="center">
    💻 HooliChat
@@ -104,7 +104,7 @@ Make sure you have installed all the npm libraries after cloning the repository 
 $ npm run swagger:gen
 ```
 
-
+## Running HooliChat API Elsewhere
 ### Sample Application
 
 We have provided a basic [Node.js application](https://hooliapi.snu-labyrinth.tech/docs) (deployed using a free Microsoft Azure Instance) that uses the HooliChat API module on Express and can be easily deployed to various infrastructure providers:
