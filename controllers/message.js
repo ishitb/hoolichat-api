@@ -58,7 +58,7 @@ const message_get_all = async (req, res) => {
 };
 
 const message_post = async ({ msg, room, user, socket }) => {
-    gloabl.console.log({ msg, room, user });
+    global.console.log({ msg, room, user });
 
     if (!msg) {
         global.console.log('Please provide proper text message');
