@@ -121,22 +121,14 @@ $ npm run swagger:gen
 
 We have provided a basic [Node.js application](https://hooliapi.snu-labyrinth.tech/docs) (deployed using a free Microsoft Azure Instance) that uses the HooliChat API module on Express and can be easily deployed to various infrastructure providers:
 
--   [Heroku and mLab](https://devcenter.heroku.com/articles/deploying-a-hoolichat-api-to-heroku)
--   [AWS and Elastic Beanstalk](http://mobile.awsblog.com/post/TxCD57GZLM2JR/How-to-set-up-Parse-Server-on-AWS-using-AWS-Elastic-Beanstalk)
--   [Google App Engine](https://medium.com/@justinbeckwith/deploying-hoolichat-api-to-google-app-engine-6bc0b7451d50)
--   [Microsoft Azure](https://azure.microsoft.com/en-us/blog/azure-welcomes-parse-developers/)
--   [SashiDo](https://blog.sashido.io/tag/migration/)
--   [Digital Ocean](https://www.digitalocean.com/community/tutorials/how-to-run-hoolichat-api-on-ubuntu-14-04)
--   [Pivotal Web Services](https://github.com/cf-platform-eng/pws-hoolichat-api)
--   [Back4app](http://blog.back4app.com/2016/03/01/quick-wizard-migration/)
--   [Glitch](https://glitch.com/edit/#!/hoolichat-api)
--   [Flynn](https://flynn.io/blog/parse-apps-on-flynn)
+-   [Heroku](https://devcenter.heroku.com/articles/deploying-nodejs)
+-   [AWS](https://aws.amazon.com/getting-started/hands-on/deploy-nodejs-web-app/)
+-   [Google App Engine](https://cloud.google.com/appengine/docs/standard/nodejs/building-app)
+-   [Microsoft Azure](https://azure.microsoft.com/en-in/develop/nodejs/)
+-   [Digital Ocean](https://try.digitalocean.com/deploy-nodejs/?utm_campaign=apac_app_platform_kw_en_cpc&utm_adgroup=deploy_nodejs&_keyword=%2Bdeploy%20%2Bnodejs&_device=c&_adposition=&utm_content=conversion&utm_medium=cpc&utm_source=google)
 
 # Configuration
 
-HooliChat API can be configured using the following options. You may pass these as parameters when running a standalone `hoolichat-api`, or by loading a configuration file in JSON format using `hoolichat-api path/to/configuration.json`. If you're using HooliChat API on Express, you may also pass these to the `ParseServer` object as options.
-
-For the full list of available options, run `hoolichat-api --help` or take a look at [HooliChat API Configurations](http://parseplatform.org/hoolichat-api/api/master/ParseServerOptions.html).
 
 ## Logging
 
