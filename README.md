@@ -29,7 +29,7 @@
       <img alt="JavaScript" src="https://forthebadge.com/images/badges/made-with-javascript.svg">
     </a>
     <br>
-    <a href="https://github.com/ishitb/hoolichat-api/actions?query=workflow%3Anode.js.yml+branch%3Amaster">
+    <a href="https://github.com/ishitb/hoolichat-api/actions?query=workflow%3Anode.js.yml">
       <img alt="Build status" src="https://github.com/ishitb/hoolichat-api/actions/workflows/node.js.yml/badge.svg">
     </a>
     <a href="https://nodejs.org/"><img alt="Node.js 12,14,15" src="https://img.shields.io/badge/nodejs-12,_14,_15-green.svg?logo=node.js&style=flat"></a>
@@ -103,7 +103,7 @@ HooliChat API is continuously tested with the most recent releases of MongoDB to
 | MongoDB 4.4 | 4.4.-          | TBD              | ✅ Fully compatible |
 
 ### Testing
-Make sure you have installed all the npm libraries after cloning the repository and you can tun the following code to test the application as per our linters and testing modules:
+Make sure you have installed all the npm libraries after cloning the repository and you can Run the following code to test the application as per our linters and testing modules:
 ```bash
 $ npm run test
 ```
@@ -196,11 +196,11 @@ In order to give everyone a chance to submit a pull request and contribute to th
 
 ### Branching Strategies
 
-For HooliChat API, we had employed the following branching strategy to simplify the development process and to ensure that only stable code is pushed to the `master` branch:
+For HooliChat API, we had employed the following branching strategy to simplify the development process and to ensure that only stable code is pushed to the `main` branch:
 
 -   `develop`: For unstable code and bug fixing
 -   `alpha-x.x.x`: For stability testing
--   `master`: Where the stable production ready code lies
+-   `main`: Where the stable production ready code lies
 
 ### Contributing Code
 
@@ -210,7 +210,7 @@ Make sure you have read the [Documentation for Setting up the Project](#configur
 
 The process of proposing a change to HooliChat API can be summarized as:
 
--   Fork the HooliChat API repository and branch off `master`.
+-   Fork the HooliChat API repository and branch off `main`.
 -   The repository can be cloned locally using `git clone <forked repo url>`.
 -   Make the desired changes to the HooliChat API source.
 -   Run the app and test your changes.
