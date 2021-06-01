@@ -1,11 +1,10 @@
 const router = require('express').Router();
 
 const blogController = require('../controllers/blogs');
-const { authenticate } = require('../middleware/auth');
 
 router.get('/', blogController.blog_get_all);
 
-router.post('/', authenticate, blogController.blog_add);
+router.post('/', blogController.blog_add);
 
 router.get('/test', blogController.blog_add_test);
 
