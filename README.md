@@ -230,7 +230,7 @@ This project exists thanks to all the people who contribute... we'd love to see 
 <table>
   <tr>
     <td align="center"><a href="https://github.com/ishitb"><img src="https://avatars.githubusercontent.com/u/53562523?v=4" width="100px;" alt=""/><br /><sub><b>Ishit Beswal</b></sub></a><br /></td>
-    <td align="center"><a href="https://github.com/prkhrbhsn"><img src="https://avatars.githubusercontent.com/u/38764067?v=4" width="100px;" alt=""/><br /><sub><b>Anant Bhasin</b></sub></a><br /></td>
-    <td align="center"><a href="https://github.com/kirtiksingh"><img src="https://avatars.githubusercontent.com/u/58079155?v=4" width="100px;" alt=""/><br /><sub><b>Nakul Gupta</b></sub></a><br /></td> 
+    <td align="center"><a href="https://github.com/aKn1ghtOut"><img src="https://avatars.githubusercontent.com/u/38764067?v=4" width="100px;" alt=""/><br /><sub><b>Anant Bhasin</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/nakulgupta768"><img src="https://avatars.githubusercontent.com/u/58079155?v=4" width="100px;" alt=""/><br /><sub><b>Nakul Gupta</b></sub></a><br /></td> 
   </tr>
 </table>
